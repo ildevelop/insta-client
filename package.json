@@ -2,6 +2,7 @@
   "name": "create-next-example-app",
   "scripts": {
     "dev": "next",
+    "express": "nodemon --ignore .next server/index.js",
     "build": "next build",
     "start": "next start"
   },
@@ -9,5 +10,9 @@
     "next": "^8.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.11"
   }
 }
