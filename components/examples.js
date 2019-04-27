@@ -3,8 +3,11 @@ import Clock from './clock'
 import Link from 'next/link'
 import {serverRenderClock, startClock} from "../actions/mainActions";
 import React from "react";
-
-
+// import myPict from '../static/img/ryan.jpg'
+import "./styles.scss"
+// function MyImage() {
+//   return <img src="../static/img/ryan.jpg" alt="my image" />;
+// }
 class Examples extends React.Component {
   static getInitialProps ({ reduxStore, req }) {
     const isServer = !!req
@@ -26,7 +29,8 @@ class Examples extends React.Component {
     const {lastUpdate,light}= this.props
     return (
       <div>
-        <h2>Hello Examples</h2>
+        <h2 className="example">Hello Examples</h2>
+        <img src="../static/img/ryan.jpg" alt="my image" />
         <ul>
           <li>
             <Link prefetch href="/">
