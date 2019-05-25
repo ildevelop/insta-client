@@ -44,23 +44,60 @@ class Insta {
   async getMediaByShortcode(shortcode) {
     try {
       if (shortcode) {
+        console.log('shortcode',shortcode);
         return await this.client.getMediaByShortcode({ shortcode})
       } else return {error: 'shortcode is require'}
     } catch (e) {
       return {e}
     }
   }
-  async getPhotosByHashtag(hashtag) {
+  async search(query,context) {
     //TODO something error
     try {
+      if (query) {
+        console.log('search',{ query,context});
+        return await this.client.getMediaByShortcode({ query,context})
+      } else return {error: 'search query is require'}
+    } catch (e) {
+      return {e}
+    }
+  }
+  async getPhotosByHashtag(hashtag) {
+    try {
       if (hashtag) {
-        return await this.client.getPhotosByHashtag({ hashtag})
+        return await this.client.getMediaFeedByHashtag({ hashtag})
       } else return {error: 'hashtag is require'}
     } catch (e) {
       return {e}
     }
   }
-
+  async like(mediaId) {
+    try {
+      if (mediaId) {
+        return await this.client.getMediaFeedByHashtag({ mediaId})
+      } else return {error: 'mediaId is require'}
+    } catch (e) {
+      return {e}
+    }
+  }
+  async getHome(feedId) {
+    //TODO something error
+    try {
+        return await this.client.getHome(feedId)
+    } catch (e) {
+      return {e}
+    }
+  }
+  async getUser(username) {
+    try {
+      if(username){
+        return await this.client.getUserByUsername({ username})
+      } else return {error: 'username is require'}
+      return await this.client.getHome()
+    } catch (e) {
+      return {e}
+    }
+  }
 
 }
 

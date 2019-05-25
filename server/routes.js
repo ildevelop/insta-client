@@ -35,5 +35,26 @@ router.post('/get-photos-hashtag', async (req, res) => {
   const {hashtag} = req.body;
   res.send(await User.getPhotosByHashtag(hashtag))
 });
+router.post('/search', async (req, res) => {
+  //Search users, places, or hashtags
+  const {query,context} = req.body;
+  res.send(await User.search(query,context))
+});
+router.post('/get-feed', async (req, res) => {
+  //Get home feed timeline, media shared by the people you follow
+  const {feedId} = req.body;
+  res.send(await User.getHome(feedId))
+});
+router.post('/get-user', async (req, res) => {
+  //Get user by username, this method not require authentication for public profiles.
+  const {username} = req.body;
+  res.send(await User.getUser(username))
+});
+router.post('/like', async (req, res) => {
+  //Get user by username, this method not require authentication for public profiles.
+  const {mediaId} = req.body;
+  res.send(await User.like(mediaId))
+});
+
 
 module.exports = router;
