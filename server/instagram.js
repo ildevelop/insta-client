@@ -1,4 +1,7 @@
 const Instagram = require('instagram-web-api')
+// const FileCookieStore = require('tough-cookie-filestore2')
+// const cookies =require('./../cookies')
+// const cookieStore = new FileCookieStore('./cookies.json')
 
 class Insta {
   constructor() {
@@ -8,7 +11,6 @@ class Insta {
   async loginInsta(username, password) {
     this.client = new Instagram({username, password})
     this.loginUser = await this.client.login()
-    console.log({user: this.loginUser});
     if (this.loginUser.status === 'ok') {
       return this.loginUser
     } else {
@@ -44,7 +46,6 @@ class Insta {
   async getMediaByShortcode(shortcode) {
     try {
       if (shortcode) {
-        console.log('shortcode',shortcode);
         return await this.client.getMediaByShortcode({ shortcode})
       } else return {error: 'shortcode is require'}
     } catch (e) {
@@ -52,11 +53,10 @@ class Insta {
     }
   }
   async search(query,context) {
-    //TODO something error
     try {
       if (query) {
-        console.log('search',{ query,context});
-        return await this.client.getMediaByShortcode({ query,context})
+        // console.log('search',{ query,context,cookies:cookies["instagram.com"]["/"].csrftoken.value});
+        return await this.client.search({ query,context})
       } else return {error: 'search query is require'}
     } catch (e) {
       return {e}
@@ -80,10 +80,9 @@ class Insta {
       return {e}
     }
   }
-  async getHome(feedId) {
-    //TODO something error
+  async getHome() {
     try {
-        return await this.client.getHome(feedId)
+        return await this.client.getHome(this.client.fr)
     } catch (e) {
       return {e}
     }

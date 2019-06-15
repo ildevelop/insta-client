@@ -25,6 +25,7 @@
     "express": "^4.16.4",
     "node-sass": "^4.7.2",
     "nodemon": "^1.18.11",
+    "tough-cookie": "^3.0.1",
     "tough-cookie-filestore2": "^1.0.0"
   }
 }
