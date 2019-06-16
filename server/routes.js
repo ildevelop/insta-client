@@ -51,9 +51,23 @@ router.post('/get-user', async (req, res) => {
   res.send(await User.getUser(username))
 });
 router.post('/like', async (req, res) => {
-  //Get user by username, this method not require authentication for public profiles.
   const {mediaId} = req.body;
   res.send(await User.like(mediaId))
+});
+router.post('/follow', async (req, res) => {
+  const {userId} = req.body;
+  res.send(await User.follow(userId))
+});
+router.post('/get-followers', async (req, res) => {
+  const {userId} = req.body;
+  res.send(await User.getFollowers(userId))
+});
+router.post('/get-followings', async (req, res) => {
+  const {userId} = req.body;
+  res.send(await User.getFollowings(userId))
+});
+router.post('/logout', async (req, res) => {
+  res.send(await User.logout())
 });
 
 

@@ -17,7 +17,11 @@ class Insta {
       return {status: "Login Error"}
     }
   }
-
+  async logout() {
+    this.client =null
+    // await client.logout() // GET token on error
+    return {status:200}
+  }
   async getProfile() {
     try {
       return await this.client.getProfile()
@@ -74,8 +78,35 @@ class Insta {
   async like(mediaId) {
     try {
       if (mediaId) {
-        return await this.client.getMediaFeedByHashtag({ mediaId})
+        return await this.client.like({ mediaId})
       } else return {error: 'mediaId is require'}
+    } catch (e) {
+      return {e}
+    }
+  }
+  async follow(userId) {
+    try {
+      if (userId) {
+        return await this.client.follow({ userId})
+      } else return {error: 'userId is require'}
+    } catch (e) {
+      return {e}
+    }
+  }
+  async getFollowers(userId) {
+    try {
+      if (userId) {
+        return await this.client.getFollowers({ userId})
+      } else return {error: 'userId is require'}
+    } catch (e) {
+      return {e}
+    }
+  }
+  async getFollowings(userId) {
+    try {
+      if (userId) {
+        return await this.client.getFollowings({ userId})
+      } else return {error: 'userId is require'}
     } catch (e) {
       return {e}
     }
