@@ -69,6 +69,14 @@ router.post('/get-followings', async (req, res) => {
 router.post('/logout', async (req, res) => {
   res.send(await User.logout())
 });
+router.post('/upload-photo', async (req, res) => {
+  const {photo_url,content} = req.body;
+  res.send(await User.uploadPhoto(photo_url,content))
+});
+router.post('/upload-story', async (req, res) => {
+  const {photo_url,content} = req.body;
+  res.send(await User.uploadStory(photo_url,content))
+});
 
 
 module.exports = router;

@@ -22,6 +22,20 @@ class Insta {
     // await client.logout() // GET token on error
     return {status:200}
   }
+  async uploadPhoto(photo_url,content) {
+    try {
+      return await this.client.uploadPhoto({photo:photo_url,caption:content})
+    } catch (e) {
+      return {e}
+    }
+  }
+  async uploadStory(photo_url,content) {
+    try {
+      return await this.client.uploadStory({photo:photo_url,caption:content})
+    } catch (e) {
+      return {e}
+    }
+  }
   async getProfile() {
     try {
       return await this.client.getProfile()
