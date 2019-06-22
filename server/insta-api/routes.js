@@ -4,7 +4,8 @@ const router = express.Router()
 // const cookieStore = new FileCookieStore('./cookies.json')
 
 const Insta = require('./instagram')
-let User = new Insta
+const User = new Insta
+
 router.get('/test', (req, res) => {
   res.send("test HERE")
 });

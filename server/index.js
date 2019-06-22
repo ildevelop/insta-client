@@ -1,7 +1,7 @@
 const express = require('express')
 const next = require('next')
 require('dotenv').config()
-const apiRoute =require('./routes.js')
+const instaRoute =require('./insta-api/routes.js')
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -30,7 +30,7 @@ app.prepare().then(() => {
       next();
     })
   server.use(bodyParser.json());
-  server.use('/api',apiRoute)
+  server.use('/api',instaRoute);
   server.get('/ping', (req, res) => {
     return res.send({'status':'pong'})
   })

